@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Public routes that don't require auth
-  const publicRoutes = ["/login", "/signup", "/api/auth/callback"];
+  const publicRoutes = ["/login", "/api/auth/callback"];
   const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
   // If not logged in and trying to access a protected route, redirect to login
@@ -44,7 +44,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // If logged in and trying to access login/signup, redirect to dashboard
-  if (user && (pathname === "/login" || pathname === "/signup")) {
+  if (user && pathname === "/login") {
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
     return NextResponse.redirect(url);

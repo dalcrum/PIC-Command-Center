@@ -1,54 +1,123 @@
 @import "tailwindcss";
 
+/* ============================================================
+   PIC Command Center — Design System
+   Dark theme (default) + Light theme toggle
+   ============================================================ */
+
+/* DARK THEME (default) */
 :root {
-  /* Navy + Gold — PIC Command Center Design System */
-  --navy: #0F2944;
-  --gold: #C08D20;
-  --gold-light: #FBF5E8;
-  --background: #F5F3EE;
-  --surface: #FFFFFF;
-  --text-primary: #1A1A1A;
+  --pic-black: #0b0f19;
+  --pic-navy: #0a1f32;
+  --pic-blue: #0f2944;
+  --pic-dark-gray: #b3b3b3;
+  --pic-light-gray: #cdcdcd;
+  --pic-gold: #c08d20;
+
+  /* Module accent colors */
+  --mod-moonshot: #EF9F27;
+  --mod-orbit: #378ADD;
+  --mod-astro: #5A8F1A;
+  --mod-gravity: #D49A12;
+
+  /* Semantic tokens (dark) */
+  --bg-primary: #0b0f19;
+  --bg-surface: #0a1f32;
+  --bg-elevated: #0f2944;
+  --text-primary: #ffffff;
+  --text-secondary: #cdcdcd;
+  --text-muted: #b3b3b3;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-strong: rgba(255, 255, 255, 0.15);
+  --accent: #c08d20;
+  --accent-hover: #d4a02e;
+  --danger: #ef4444;
+  --success: #22c55e;
+
+  /* CTA specific */
+  --cta-bg: #c08d20;
+  --cta-text: #0b0f19;
+}
+
+/* LIGHT THEME */
+[data-theme="light"] {
+  --bg-primary: #f5f3ee;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f0ede6;
+  --text-primary: #1a1a1a;
   --text-secondary: #666666;
-  --border: #E8E6E1;
-  --danger: #DC2626;
-  --success: #16A34A;
+  --text-muted: #999999;
+  --border-color: #e8e6e1;
+  --border-color-strong: #d5d3ce;
+  --accent: #c08d20;
+  --accent-hover: #a87a1a;
+  --danger: #dc2626;
+  --success: #16a34a;
+
+  --cta-bg: #c08d20;
+  --cta-text: #ffffff;
 }
 
 @theme inline {
-  --color-navy: var(--navy);
-  --color-gold: var(--gold);
-  --color-gold-light: var(--gold-light);
-  --color-background: var(--background);
-  --color-surface: var(--surface);
+  /* Brand colors (always available) */
+  --color-pic-black: var(--pic-black);
+  --color-pic-navy: var(--pic-navy);
+  --color-pic-blue: var(--pic-blue);
+  --color-pic-gold: var(--pic-gold);
+  --color-pic-dark-gray: var(--pic-dark-gray);
+  --color-pic-light-gray: var(--pic-light-gray);
+
+  /* Module colors */
+  --color-mod-moonshot: var(--mod-moonshot);
+  --color-mod-orbit: var(--mod-orbit);
+  --color-mod-astro: var(--mod-astro);
+  --color-mod-gravity: var(--mod-gravity);
+
+  /* Semantic (theme-aware) */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-border: var(--border);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border-color);
+  --color-border-strong: var(--border-color-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-danger: var(--danger);
   --color-success: var(--success);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cta-bg: var(--cta-bg);
+  --color-cta-text: var(--cta-text);
+
+  /* Fonts */
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --font-display: var(--font-montserrat), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
+  background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
-/* Scrollbar styling */
+/* Scrollbar — theme-aware */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--bg-primary);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--border-color-strong);
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--text-muted);
+}
+
+/* Smooth theme transitions */
+body,
+body * {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
